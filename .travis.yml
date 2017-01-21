@@ -1,10 +1,17 @@
 language: elixir
 elixir:
-  - 1.2
+- 1.2
 otp_release:
-  - 18.2
+- 18.2
 sudo: false
 addons:
   postgresql: '9.4'
 before_script:
-  - psql -c 'create database peepchat_test;' -U postgres
+- psql -c 'create database peepchat_test;' -U postgres
+deploy:
+  provider: heroku
+  api_key:
+    secure: bECAB17/LeguFEpQlV3ERYnu3PfRTAgE2S03sWO6gMcY+dkduGLKxxxb9i92CLGtHWy/5c/3+fplbBfZ3APwRaWRJtLntP8HybEdxgVxgbue1xSPV+g+JGjoQMUxWcA9IzojWaFd7BHAP/MiUKGcNN7Ejg34ZXKYW/zjKoZR6Bwee8Lzo8D+Sqa0GtKKd9eGW3iE2ew4aIEL5UiIZgEtdxqSsdTKkaqb6V3jztxCai+4k2/AQH2fzkWWzdHz+VFLPuSMYLhCiYO8W3epknr9EM8gIL9EWhLmpfmAFQ0l2KS7GpHPMptgMOLkTOHohuYpu1Ov7VhoSNwBt0U0ziV8Nfonk4oK1sfG4F9Ce2uBrgSksib7wbBQ4TUHpbz0LQ8szNN5Apy7MiOqvlGM/FfCB2WKWgEEnxNtf1Hdr7yqUebi7XI0Aq4u8RrTVBcGqtyLmF4B/EqgKZ9lmlasYUT23MYYXVCSUvTBQMbXgCZ0PQCwUxS3Fwuwp3RAtMfuIZFLmOeXNCrKNRyI0DOmy76ED6tcjo9VjwTDswgfWRAT6PiSYEjyZ/uAorbGznC8YXAEYQdcJMqiTCj26kLVBRGH8lguqtG3t0jd5ixGbVOesJuBHygWGEHf5+LZTBBUeehsm33NoXA3qanJATpcesA0haVLsK+cb8ZqxKqcSuRBT3c=
+  app: salty-garden-92535
+  on:
+    repo: ianknauer/peep-learning-backend
