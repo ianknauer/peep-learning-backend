@@ -27,4 +27,13 @@ config :logger, :console,
 config :phoenix, :format_encoders, "json-api": Poison
 config :mime, :types, %{"application/vnd.api+json" => ["json-api"]}
 
+config :guardian, Guardian,
+  allowed_algos: ["HS512"],
+  verify_module: Guardian.JWT,
+  issuer: "Peepchat",
+  ttl: { 30, :days },
+  verify_issuer: true,
+  secret_key: System.get_env("GUARDIAN_SECRET") || "xvTqsSrwJV4eh7vZaRHEG4b8r7fjsjYJx6dRx0dbckbOqE2JZLGNraH15d4qufMc",
+  serializer: Peepchat.GuardianSerializer
+
 import_config "#{Mix.env}.exs"
