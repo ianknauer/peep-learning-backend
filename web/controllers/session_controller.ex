@@ -3,7 +3,7 @@ defmodule Peepchat.SessionController do
 
   import Ecto.Query, only: [where: 2]
   import Comeonin.Bcrypt
-  import Logger
+  require Logger
 
   alias Peepchat.User
 

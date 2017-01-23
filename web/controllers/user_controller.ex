@@ -1,7 +1,6 @@
 defmodule Peepchat.UserController do
   use Peepchat.Web, :controller
-
-  alias Peepchat.User
+  
   plug Guardian.Plug.EnsureAuthenticated, handler: Peepchat.AuthErrorHandler
 
   def current(conn, _) do
@@ -9,6 +8,6 @@ defmodule Peepchat.UserController do
     |> Guardian.Plug.current_resource
 
     conn
-    |> render(Peepchat.UserView, "show.json", user: user)
+    |> render(Peepchat.UserView, "show.json-api", data: user)
   end
 end

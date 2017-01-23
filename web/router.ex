@@ -7,8 +7,10 @@ defmodule Peepchat.Router do
 
   pipeline :api_auth do
     plug :accepts, ["json", "json-api"]
-    plug Guardian.Plug.VerifyHeader
+    plug Guardian.Plug.VerifyHeader, realm: "Bearer"
     plug Guardian.Plug.LoadResource
+    plug JaSerializer.ContentTypeNegotiation
+    plug JaSerializer.Deserializer
   end
 
   scope "/api", Peepchat do
@@ -19,6 +21,6 @@ defmodule Peepchat.Router do
 
   scope "/api", Peepchat do
     pipe_through :api_auth
-    get "/user/current", UserController, :current
+    get "/user/current", UserController, :current, as: :current_user
   end
 end
